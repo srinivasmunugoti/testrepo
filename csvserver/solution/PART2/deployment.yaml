@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - name: demo-container
+        image: demoserver:1.0
+       # sample repo
+       # image: aws_account_id.dkr.ecr.us-west-2.amazonaws.com/my-repository:tag
+        ports:
+        - containerPort: 9300
+        env:
+        - name: CSVSERVER_BORDER
+          value: Orange
+      
